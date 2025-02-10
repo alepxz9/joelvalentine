@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes scrollOpen {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Envelope Styles */
+.envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  margin: 150px auto;
+  background-color: #f9c5c8;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flap {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  border-top: 98px solid #ff3333;
+  transform-origin: top;
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+
+.pocket {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+  border-left: 140px solid #ff9999;
+  border-right: 140px solid #ff9999;
+  border-bottom: 90px solid #fd8787;
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.scroll {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  width: fit-content;
+  max-width: 90vw;
+  border: 2.5px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  line-height: 1.8;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  animation: scrollOpen 1s forwards;
+}
+.hearts {
+  position: absolute;
+  z-index: 5; /* Mayor que .pocket (z-index: 3) y .flap (z-index: 3) */
+  width: 100%;
+  top: -50px; /* Ajusta la posición para que aparezcan arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
